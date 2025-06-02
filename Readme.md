@@ -110,7 +110,7 @@ music-sales-analysis/
 ## 👨‍💻 Author
 
 **Your Name Here**  
-📧 [your.iamsanju0707@gmail.com@example.com]  
+📧 [iamsanju0707@gmail.com]  
 🔗 [linkedin.com/in/Gajender07]
 
 ---
