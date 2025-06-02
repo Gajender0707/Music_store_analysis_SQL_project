@@ -37,21 +37,20 @@ This project analyzes a music store database to identify **top-performing genres
 ---
 
 ## 📂 Project Structure
-📁 music-sales-analysis/
+music-sales-analysis/
 │
 ├── queries/
-│   └── music_analysis_project.sql
-│   └── music_store_database.sql
-|
+│   ├── music_analysis_project.sql     # SQL queries used for analysis
+│   └── music_store_database.sql       # Schema and sample data for the music store database
 │
 ├── dashboard/
-│   └── music_store_dashboard.twb  <- Tableau workbook
-│   └── dashboard_screenshot.png
+│   ├── music_store_dashboard.twb      # Tableau workbook containing interactive dashboards
+│   └── dashboard_screenshot.png       # Preview image of the final dashboard
 │
 ├── data/
-│   └── all data csv files
+│   └── *.csv                          # All data files used (can include customers, sales, invoices, tracks, etc.)
 │
-└── README.md
+└── README.md                          # Project overview and documentation
 
 
 
