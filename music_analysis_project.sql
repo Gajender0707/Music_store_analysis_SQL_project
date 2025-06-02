@@ -215,11 +215,42 @@ left join track t on il.track_id=t.track_id
 left join genre g on t.genre_id=g.genre_id
 where c.country='Czech Republic' and c.first_name='Helena';
 
+select * from employee;
 
 
-
-
-
+/* Question:
+How can we identify the top 30% of customers who contribute to at least 70% of total revenue, 
+so we can focus our campaigns more efficiently?
+*/
+select * from invoice;
+WITH CustomerSpending AS (
+    SELECT 
+        c.customer_id,
+        c.first_name || ' ' || c.last_name AS CustomerName,
+        round(SUM(i.total)::numeric,2) AS TotalSpent
+    FROM Customer c
+    JOIN Invoice i ON c.customer_id = i.customer_id
+    GROUP BY c.customer_id
+),
+TotalRevenue AS (
+    SELECT SUM(TotalSpent) AS TotalRevenue FROM CustomerSpending
+),
+RankedCustomers AS (
+    SELECT 
+        cs.customer_id,
+        cs.CustomerName,
+        cs.TotalSpent,
+        SUM(cs.TotalSpent) OVER (ORDER BY cs.TotalSpent DESC) AS RunningTotal,
+        ROUND(SUM(cs.TotalSpent) OVER (ORDER BY cs.TotalSpent DESC) * 100.0 / tr.TotalRevenue, 2) AS RunningPercent
+    FROM CustomerSpending cs, TotalRevenue tr
+)
+SELECT 
+    customer_id,
+    CustomerName,
+    TotalSpent,
+    RunningPercent
+FROM RankedCustomers
+WHERE RunningPercent <= 70;
 
 
 
