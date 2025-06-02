@@ -40,66 +40,83 @@ This project analyzes a music store database to identify **top-performing genres
 music-sales-analysis/
 │
 ├── queries/
-│   ├── music_analysis_project.sql     # SQL queries used for analysis
-│   └── music_store_database.sql       # Schema and sample data for the music store database
+│   ├── music_analysis_project.sql       # SQL queries for analysis
+│   └── music_store_database.sql         # SQL schema and sample data
 │
 ├── dashboard/
-│   ├── music_store_dashboard.twb      # Tableau workbook containing interactive dashboards
-│   └── dashboard_screenshot.png       # Preview image of the final dashboard
+│   ├── music_store_dashboard.twb        # Tableau workbook
+│   └── dashboard_screenshot.png         # Dashboard preview image
 │
 ├── data/
-│   └── *.csv                          # All data files used (can include customers, sales, invoices, tracks, etc.)
+│   └── *.csv                            # Data files used in the project
 │
-└── README.md                          # Project overview and documentation
+└── README.md                            # Project documentation
 
 
 
 ---
+---
 
-## ✅ Sample Questions Solved
+## 🛠️ Tools Used
 
-### 🟢 Basic Level
-- Who is the senior-most employee?
-- Which country has the most invoices?
-- What are the top 3 invoice totals?
-- Which city generated the highest revenue?
-- Who is the top customer?
-
-### 🟡 Moderate Level
-- List Rock music listeners' emails alphabetically
-- Top 10 artists with most rock songs
-- Tracks longer than average length
-
-### 🔴 Advanced Level
-- Total spent by each customer on each artist
-- Most popular genre per country (by purchase count)
-- Top-spending customer per country
+- **SQL** – Data exploration and analysis
+- **Tableau** – Dashboard creation and visualization
+- **CSV** – Raw dataset files
 
 ---
 
-## 🔍 35% Targeting Improvement Estimation
+## 🔍 Features
 
-**Scenario:**
-- Initially, campaigns target 100% of customers
-- Analysis shows top 30% customers contribute to 70% revenue
-- By targeting these key segments, a business could reduce spend and increase ROI  
-➡️ **Result: ~35%+ improvement in marketing efficiency**
+### SQL Analysis (`/queries`)
+- Top-selling genres and artists
+- Revenue by country and invoice date
+- Customer segmentation
+- Monthly and yearly sales trends
 
-```sql
--- Sample query to find top customers contributing to 70% revenue
-WITH CustomerSpending AS (
-    SELECT c.CustomerId, c.FirstName || ' ' || c.LastName AS CustomerName,
-           SUM(i.Total) AS TotalSpent
-    FROM Customer c
-    JOIN Invoice i ON c.CustomerId = i.CustomerId
-    GROUP BY c.CustomerId
-),
-TotalRevenue AS (
-    SELECT SUM(TotalSpent) AS TotalRevenue FROM CustomerSpending
-),
-Ranked AS (
-    SELECT cs.*, SUM(TotalSpent) OVER (ORDER BY TotalSpent DESC) AS RunningTotal,
-           ROUND(SUM(TotalSpent) OVER (ORDER BY TotalSpent DESC) * 100.0 / tr.TotalRevenue, 2) AS RunningPercent
-    FROM CustomerSpending cs, TotalRevenue tr
-)
-SELECT * FROM Ranked WHERE RunningPercent <= 70;
+### Tableau Dashboard (`/dashboard`)
+- Interactive visuals for key metrics
+- Genre-wise and country-wise sales comparison
+- Trend charts and KPIs
+
+---
+
+## 📸 Dashboard Preview
+
+![Dashboard Preview](dashboard/dashboard_screenshot.png)
+
+---
+
+## 📦 Data Used
+
+- `customers.csv`
+- `invoices.csv`
+- `tracks.csv`
+- `genres.csv`
+- `albums.csv`
+- `artists.csv`
+
+(Located in the `/data` folder)
+
+---
+
+## 🚀 Getting Started
+
+1. Import `music_store_database.sql` into your SQL environment (MySQL/PostgreSQL etc.)
+2. Run `music_analysis_project.sql` for analysis
+3. Open `music_store_dashboard.twb` in Tableau to view or modify the dashboard
+
+---
+
+## 👨‍💻 Author
+
+**Your Name Here**  
+📧 [your.iamsanju0707@gmail.com@example.com]  
+🔗 [linkedin.com/in/Gajender07]
+
+---
+
+## 📄 License
+
+This project is licensed for educational use. Feel free to fork, modify, and share!
+
+---
