@@ -40,16 +40,16 @@ This project analyzes a music store database to identify **top-performing genres
 📁 music-sales-analysis/
 │
 ├── queries/
-│   └── advanced_queries.sql
-│   └── moderate_queries.sql
-│   └── segmentation_query.sql   <- query supporting 35% claim
+│   └── music_analysis_project.sql
+│   └── music_store_database.sql
+|
 │
 ├── dashboard/
 │   └── music_store_dashboard.twb  <- Tableau workbook
 │   └── dashboard_screenshot.png
 │
 ├── data/
-│   └── chinook.db (or .csv files)
+│   └── all data csv files
 │
 └── README.md
 
